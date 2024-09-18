@@ -1,0 +1,11 @@
+<!-- equipment/templates/equipment/reservation_form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>為 {{ equipment.name }} 創建預約</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">創建預約</button>
+</form>
+{% endblock %}

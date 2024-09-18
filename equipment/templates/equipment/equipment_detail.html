@@ -1,0 +1,28 @@
+<!-- equipment/templates/equipment/equipment_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ equipment.name }}</h1>
+<div class="equipment-detail">
+    <p><strong>描述：</strong> {{ equipment.description }}</p>
+    <p><strong>狀態：</strong> {% if equipment.is_available %}可用{% else %}不可用{% endif %}</p>
+</div>
+
+{% if equipment.is_available %}
+<a href="{% url 'create_reservation' equipment.pk %}" class="btn btn-primary">預約此設備</a>
+{% endif %}
+
+<h2>最近的預約</h2>
+<div class="recent-reservations">
+    {% for reservation in reservations %}
+    <div class="reservation-item">
+        <p><strong>用戶：</strong> {{ reservation.user.username }}</p>
+        <p><strong>測試名稱：</strong> {{ reservation.test_name }}</p>
+        <p><strong>開始時間：</strong> {{ reservation.start_time }}</p>
+        <p><strong>結束時間：</strong> {{ reservation.end_time }}</p>
+    </div>
+    {% empty %}
+    <p>目前沒有預約。</p>
+    {% endfor %}
+</div>
+{% endblock %}

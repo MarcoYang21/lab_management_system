@@ -1,0 +1,14 @@
+<!-- equipment/templates/equipment/login.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}登入 - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <h2>登入</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">登入</button>
+    </form>
+{% endblock %}

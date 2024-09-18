@@ -1,0 +1,11 @@
+<!-- equipment/templates/equipment/profile.html -->
+{% extends 'base.html' %}
+
+{% block title %}個人資料 - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <h2>個人資料</h2>
+    <p>用戶名: {{ user.username }}</p>
+    <p>電子郵件: {{ user.email }}</p>
+    <p>角色: {{ user.get_role_display }}</p>
+{% endblock %}

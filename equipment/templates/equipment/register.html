@@ -1,0 +1,14 @@
+<!-- equipment/templates/equipment/register.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}註冊 - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <h2>註冊</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">註冊</button>
+    </form>
+{% endblock %}

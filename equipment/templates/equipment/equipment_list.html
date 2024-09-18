@@ -1,0 +1,37 @@
+<!-- equipment/templates/equipment/equipment_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>設備列表</h1>
+<div class="equipment-list">
+    {% for equipment in equipments %}
+    <div class="equipment-item">
+        <h2><a href="{% url 'equipment_detail' equipment.pk %}">{{ equipment.name }}</a></h2>
+        <p>{{ equipment.description|truncatewords:20 }}</p>
+        <p>狀態: {% if equipment.is_available %}可用{% else %}不可用{% endif %}</p>
+    </div>
+    {% empty %}
+    <p>目前沒有可用的設備。</p>
+    {% endfor %}
+</div>
+
+{% if is_paginated %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; 首頁</a>
+            <a href="?page={{ page_obj.previous_page_number }}">上一頁</a>
+        {% endif %}
+
+        <span class="current">
+            第 {{ page_obj.number }} 頁，共 {{ page_obj.paginator.num_pages }} 頁。
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">下一頁</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">尾頁 &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+{% endblock %}

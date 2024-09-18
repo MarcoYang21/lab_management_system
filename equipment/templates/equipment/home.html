@@ -1,0 +1,21 @@
+<!-- equipment/templates/equipment/home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>歡迎來到實驗室設備管理系統</h1>
+<p>這裡是系統的首頁。您可以使用以下連結導航到不同的頁面：</p>
+
+<nav>
+    <ul>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">個人資料</a></li>
+            <li><a href="{% url 'logout' %}">登出</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">登入</a></li>
+            <li><a href="{% url 'register' %}">註冊</a></li>
+        {% endif %}
+        <!-- 可以根據需要添加更多連結 -->
+    </ul>
+</nav>
+
+{% endblock %}
